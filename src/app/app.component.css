@@ -1,0 +1,71 @@
+:host {
+    --content-padding: 20px 50px;
+    font-family: "Raleway", sans-serif;
+  }
+main {
+  max-width: 100%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 100px;
+     
+}
+
+header > ul {
+    display: flex;
+    list-style-type: none ;
+    color: #1d1f22;
+}
+
+header > ul > li {
+    text-decoration-style: none;
+}
+
+header > ul> li> a {
+    text-decoration-line: none;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+header > ul> li> a:hover, header> ul> li> a:active {
+  color: #5ece7b;
+  border-bottom: 1px solid #5ece7b;
+  padding-bottom: 10px;
+}
+
+.currency-section {
+    display: flex;
+    
+}
+
+.currency-section > select {
+    margin-right: 20px;
+}
+
+.shopping-cart {
+    display: flex;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .cart--button {
+    height: 30px;
+  }
+  
+  .badge {
+    position: absolute;
+    background: #5ece7b;
+    top: -12px;
+    left: 20px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }

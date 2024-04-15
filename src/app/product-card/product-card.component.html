@@ -1,0 +1,20 @@
+<div class="card-container">
+    <div class="content-container">
+      <img
+        [src]="product.gallery[0]"
+        alt="product"
+      />
+      <div class="add-cart">
+        <button>
+          <img src="/assets/Common.svg" alt="cart" />
+        </button>
+      </div>
+      <div class="product-desc">
+        <p class="product-name">{{product.name}}</p>
+
+        <p class="product-price">
+           {{product.prices[0].currency.symbol}}  {{ product.prices[0].amount}}
+        </p>
+      </div>
+    </div>
+  </div>

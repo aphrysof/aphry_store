@@ -1,0 +1,8 @@
+<section class="product-container">
+    <h2 class="heading">{{ products.name }}</h2>
+    <div class="product-section">
+        <app-product-card *ngFor="let product of products.products" [product]="product"></app-product-card>
+    </div>
+    
+</section>
+
