@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 import { routes } from './app.routes';
 import { HttpLink } from 'apollo-angular/http'
 import { HttpClientModule } from '@angular/common/http';
@@ -10,7 +10,9 @@ import { myUri } from './graphql.config';
 export const appConfig: ApplicationConfig = {
   providers: [
     importProvidersFrom(HttpClientModule),
-    provideRouter(routes),
+    provideRouter(routes
+      // withPreloading(PreloadAllModules)
+    ),
     {
       provide: APOLLO_OPTIONS,
       useFactory(httpLink: HttpLink) {

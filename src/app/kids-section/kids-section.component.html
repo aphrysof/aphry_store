@@ -1,1 +1,7 @@
-<p>kids-section works!</p>
+<section class="product-container">
+    <h2 class="heading">Tech</h2>
+    <div class="product-section">
+        <app-product-card *ngFor="let product of categories.categories[2]?.products" [product]="product"></app-product-card>
+    </div>
+    <div *ngIf="loading">Loading...</div>
+</section>

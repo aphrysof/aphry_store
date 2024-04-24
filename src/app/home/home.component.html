@@ -1,8 +1,8 @@
 <section class="product-container">
-    <h2 class="heading">{{ products.name }}</h2>
+    <h2 class="heading">All</h2>
     <div class="product-section">
-        <app-product-card *ngFor="let product of products.products" [product]="product"></app-product-card>
+        <app-product-card *ngFor="let product of categories.categories[0]?.products" [product]="product"></app-product-card>
     </div>
-    
+    <p *ngIf="loading">Loading....</p>
 </section>
 

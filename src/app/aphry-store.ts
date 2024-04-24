@@ -37,3 +37,9 @@ export interface Category {
     name: string
     products: Product[]
   }
+
+export interface Categories {
+  categories: {
+    products: Product[]
+  }[]
+}

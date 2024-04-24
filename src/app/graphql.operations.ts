@@ -44,4 +44,24 @@ const GET_CURRENCIES = gql `
 }
 `
 
-export { GET_PRODUCTS, GET_CURRENCIES }
+const GET_CATEGORIES = gql `
+query Categories {
+  categories {
+    products {
+      id
+      name
+      gallery
+      inStock
+      prices {
+        currency {
+          symbol
+          label
+        }
+        amount
+      }
+    }
+  }
+}
+`
+
+export { GET_PRODUCTS, GET_CURRENCIES, GET_CATEGORIES }

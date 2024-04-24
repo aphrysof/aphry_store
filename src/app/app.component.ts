@@ -30,4 +30,6 @@ export class AppComponent implements OnInit {
       this.currencies = data.currencies
     })
   }
+
+  
 }

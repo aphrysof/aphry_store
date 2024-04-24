@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { Apollo } from 'apollo-angular';
-import { GET_PRODUCTS } from '../graphql.operations';
-import { Category } from '../aphry-store';
+import { GET_CATEGORIES, GET_PRODUCTS } from '../graphql.operations';
+import { Categories, Category } from '../aphry-store';
 import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
@@ -19,14 +19,20 @@ export class HomeComponent implements OnInit {
     products: []
   }
 
-
-  constructor(private apollo: Apollo){
-   
-
+  categories: Categories = {
+      categories: [{
+        products: []
+      }]
   }
+
+  loading: boolean = true;
+
+
+  constructor(private apollo: Apollo){}
 
   ngOnInit() {    
     this.getAllProducts()
+    this.getCategories()
   }
 
   getAllProducts () {
@@ -34,6 +40,15 @@ export class HomeComponent implements OnInit {
       query: GET_PRODUCTS,
     }).valueChanges.subscribe(({ data, loading, error}) => {
         this.products = data.category
+    })
+  }
+
+  getCategories () {
+    this.apollo.watchQuery<any>({
+      query: GET_CATEGORIES
+    }).valueChanges.subscribe(({data, loading}) => {
+      this.categories = data
+      this.loading = loading
     })
   }
 }

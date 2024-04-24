@@ -1,1 +1,7 @@
-<p>men-section works!</p>
+<section class="product-container">
+    <h2 class="heading">Clothes</h2>
+    <div class="product-section">
+        <app-product-card *ngFor="let product of categories.categories[1]?.products" [product]="product"></app-product-card>
+    </div>
+    <p *ngIf="loading">Loading.....</p>
+</section>

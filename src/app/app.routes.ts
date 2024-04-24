@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { WomenSectionComponent } from './women-section/women-section.component';
 import { MenSectionComponent } from './men-section/men-section.component';
 import { KidsSectionComponent } from './kids-section/kids-section.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 export const routes: Routes = [
     {
@@ -11,18 +11,18 @@ export const routes: Routes = [
         title: "Home Page"
     }, 
     {
-        path: 'women',
-        component: WomenSectionComponent,
-        title: "Women Section"
-    }, 
-    {
-        path: 'mens',
+        path: 'clothes',
         component: MenSectionComponent,
-        title: "Men's Section"
+        title: "Clothes"
     },
     {
-        path: 'kids',
+        path: 'tech',
         component: KidsSectionComponent,
-        title: "Kid's Section"
+        title: "Tech"
     },
+    {
+        path: 'product/:id',
+        component: ProductDetailsComponent,
+        title: "Product Details"
+    }
 ];
