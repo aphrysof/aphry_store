@@ -26,9 +26,18 @@ export interface Product {
   name:string 
   inStock: boolean
   gallery: [string]
-  description: string
+  description: any
   category: string
-  attributes: [AttributeSet]
+  attributes: {
+    id: string
+    name: string
+    type: string
+    items: {
+      displayValue: string
+      value: string
+      id: string
+    }[]
+  }[]
   prices: [Price]
   brand: string
 }

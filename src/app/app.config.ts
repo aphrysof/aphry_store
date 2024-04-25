@@ -10,8 +10,8 @@ import { myUri } from './graphql.config';
 export const appConfig: ApplicationConfig = {
   providers: [
     importProvidersFrom(HttpClientModule),
-    provideRouter(routes
-      // withPreloading(PreloadAllModules)
+    provideRouter(routes,
+      withPreloading(PreloadAllModules)
     ),
     {
       provide: APOLLO_OPTIONS,

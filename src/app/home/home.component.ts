@@ -5,6 +5,7 @@ import { Apollo } from 'apollo-angular';
 import { GET_CATEGORIES, GET_PRODUCTS } from '../graphql.operations';
 import { Categories, Category } from '../aphry-store';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { AphrystoreService } from '../aphrystore.service';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +15,6 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  products: Category = {
-    name: "",
-    products: []
-  }
-
   categories: Categories = {
       categories: [{
         products: []
@@ -28,24 +24,17 @@ export class HomeComponent implements OnInit {
   loading: boolean = true;
 
 
-  constructor(private apollo: Apollo){}
+  constructor(private apollo: Apollo, private AphrystoreService: AphrystoreService){}
 
   ngOnInit() {    
-    this.getAllProducts()
     this.getCategories()
   }
 
-  getAllProducts () {
-   this.apollo.watchQuery<any>({
-      query: GET_PRODUCTS,
-    }).valueChanges.subscribe(({ data, loading, error}) => {
-        this.products = data.category
-    })
-  }
+
 
   getCategories () {
     this.apollo.watchQuery<any>({
-      query: GET_CATEGORIES
+      query: this.AphrystoreService.getProductCategories
     }).valueChanges.subscribe(({data, loading}) => {
       this.categories = data
       this.loading = loading

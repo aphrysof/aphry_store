@@ -64,4 +64,34 @@ query Categories {
 }
 `
 
-export { GET_PRODUCTS, GET_CURRENCIES, GET_CATEGORIES }
+const PRODUCT_DETAILS = gql`
+  query productDetails($id: String!) {
+    product(id: $id) {
+      id
+      name
+      inStock
+      brand
+      description
+      gallery
+      prices {
+        currency {
+          symbol
+          label
+        }
+        amount
+      }
+      attributes {
+        id
+        name
+        type
+        items {
+          value
+          displayValue
+          id
+        }
+      }
+    }
+  }
+`;
+
+export { GET_PRODUCTS, GET_CURRENCIES, GET_CATEGORIES, PRODUCT_DETAILS }

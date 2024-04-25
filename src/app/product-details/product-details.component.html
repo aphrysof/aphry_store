@@ -1,1 +1,49 @@
-<p>product-details works!</p>
+<section>
+    <div class="product-details">
+        <div class="image-container">
+                
+        </div>
+        <div class="details">
+            <div class="product-names">
+                <h1>{{productDetails?.brand}}</h1>
+                <h3>{{ productDetails?.name}}</h3>
+            </div>
+            <ng-container *ngIf="!productDetails?.attributes; else elseTemplate">
+                <p>nothing here</p>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <div class="product-sizes"  *ngFor="let size of productDetails?.attributes">
+                  <div>
+                    <h5>{{size.name}}</h5>
+                    <div class="button">
+                        <button class="sizes" *ngFor="let item of size.items" [style.background-color]="item.value">
+                            <span>
+                                @if (size.name === "Size") {
+                                    {{item.value}}
+                                }@else if (size.name === "Color") {
+
+                                }
+                                @else {
+                                    {{item.displayValue}}
+                                }
+                               
+                            </span>
+                        </button>
+                    </div>
+                  </div>
+                    
+                </div>
+            </ng-template>
+            <div class="price">
+                <h5>PRICE: </h5>
+                <p>{{productDetails?.prices?.[0]?.currency?.symbol}} {{productDetails?.prices?.[0]?.amount}}</p>
+            </div>
+            <div class="add-button">
+                <button>Add to Cart</button>
+            </div>
+            <div class="description">
+                <p>{{productDetails?.description | removeHtml}}</p>
+            </div>
+        </div>
+    </div>
+</section>

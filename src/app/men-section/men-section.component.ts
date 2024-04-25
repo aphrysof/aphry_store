@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { Categories } from '../aphry-store';
 import { Apollo } from 'apollo-angular';
 import { GET_CATEGORIES } from '../graphql.operations';
+import { AphrystoreService } from '../aphrystore.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-men-section',
@@ -21,15 +23,15 @@ export class MenSectionComponent implements OnInit {
 
   loading: boolean = true;
 
-  constructor(private apollo: Apollo){}
+  constructor(private apollo: Apollo, private AphrystoreServe: AphrystoreService){}
 
   ngOnInit(): void {
-      this.getClothes()
+    this.getClothes()
   }
 
   getClothes (){
     this.apollo.watchQuery<any>({
-      query: GET_CATEGORIES,
+      query: this.AphrystoreServe.getProductCategories,
     }).valueChanges.subscribe(({ data, loading, error}) => {
       this.categories = data;
       this.loading = loading

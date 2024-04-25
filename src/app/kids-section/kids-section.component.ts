@@ -4,6 +4,7 @@ import { ProductCardComponent } from '../product-card/product-card.component';
 import { Categories } from '../aphry-store';
 import { Apollo } from 'apollo-angular';
 import { GET_CATEGORIES } from '../graphql.operations';
+import { AphrystoreService } from '../aphrystore.service';
 
 @Component({
   selector: 'app-kids-section',
@@ -20,7 +21,7 @@ export class KidsSectionComponent implements OnInit {
   }
   loading: boolean = true;
 
-  constructor(private apollo: Apollo){}
+  constructor(private apollo: Apollo, private AphrystoreService: AphrystoreService){}
 
   ngOnInit(): void {
       this.getTech()
@@ -28,7 +29,7 @@ export class KidsSectionComponent implements OnInit {
 
   getTech (){
     this.apollo.watchQuery<any>({
-      query: GET_CATEGORIES,
+      query: this.AphrystoreService.getProductCategories,
     }).valueChanges.subscribe(({ data, loading, error}) => {
       this.categories = data;
       this.loading = loading

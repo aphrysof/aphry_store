@@ -15,6 +15,10 @@
     padding: 10px;
     position: relative;
   }
+  .content-container > a {
+    text-decoration: none;
+    color: #1d1f22;
+  }
   .content-container img {
     height: 230px;
     width: 100%;

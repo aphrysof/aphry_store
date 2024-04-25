@@ -1,6 +1,7 @@
 <div class="card-container">
     <div class="content-container">
-      <img
+      <a [routerLink]="[ '/product',  product.id]">
+        <img
         [src]="product.gallery[0]"
         alt="product"
       />
@@ -16,5 +17,6 @@
            {{product.prices[0].currency.symbol}}  {{ product.prices[0].amount}}
         </p>
       </div>
+      </a>  
     </div>
   </div>
