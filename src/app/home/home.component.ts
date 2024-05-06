@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { Apollo } from 'apollo-angular';
-import { GET_CATEGORIES, GET_PRODUCTS } from '../graphql.operations';
-import { Categories, Category } from '../aphry-store';
+import { Categories, Category } from '../interfaces/aphry-store';
 import { ProductCardComponent } from '../product-card/product-card.component';
-import { AphrystoreService } from '../aphrystore.service';
+import { AphrystoreService } from '../services/aphrystore.service';
 
 @Component({
   selector: 'app-home',
@@ -26,11 +25,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private apollo: Apollo, private AphrystoreService: AphrystoreService){}
 
-  ngOnInit() {    
+  ngOnInit() {
     this.getCategories()
   }
-
-
 
   getCategories () {
     this.apollo.watchQuery<any>({

@@ -1,11 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card.component';
-import { Categories } from '../aphry-store';
+import { Categories } from '../interfaces/aphry-store';
 import { Apollo } from 'apollo-angular';
-import { GET_CATEGORIES } from '../graphql.operations';
-import { AphrystoreService } from '../aphrystore.service';
-import { Observable } from 'rxjs';
+import { AphrystoreService } from '../services/aphrystore.service';
 
 @Component({
   selector: 'app-men-section',

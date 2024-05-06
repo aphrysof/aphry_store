@@ -1,4 +1,4 @@
-<div class="card-container">
+<div [ngClass]="product.inStock ? 'card-container' : 'card-container-outStock' ">
     <div class="content-container">
       <a [routerLink]="[ '/product',  product.id]">
         <img
@@ -6,9 +6,12 @@
         alt="product"
       />
       <div class="add-cart">
-        <button>
-          <img src="/assets/Common.svg" alt="cart" />
-        </button>
+        <ng-container *ngIf="product.inStock">
+          <button>
+            <img src="/assets/Common.svg" alt="cart" />
+          </button>
+        </ng-container>
+        <p [ngClass]="product.inStock ? 'in-stock' : 'out-stock' ">OUT OF STOCK</p>
       </div>
       <div class="product-desc">
         <p class="product-name">{{product.name}}</p>
@@ -17,6 +20,6 @@
            {{product.prices[0].currency.symbol}}  {{ product.prices[0].amount}}
         </p>
       </div>
-      </a>  
+      </a>
     </div>
   </div>

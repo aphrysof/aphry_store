@@ -3,7 +3,7 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { Apollo } from 'apollo-angular';
 import { GET_CURRENCIES } from './graphql.operations';
-import { Currencies } from './aphry-store';
+import { Currencies } from './interfaces/aphry-store';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 
 export class AppComponent implements OnInit {
   currencies: Currencies[] = []
-  
+
   constructor( private apollo: Apollo){}
 
   ngOnInit() {
@@ -31,5 +31,5 @@ export class AppComponent implements OnInit {
     })
   }
 
-  
+
 }

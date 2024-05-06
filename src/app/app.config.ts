@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InMemoryCache, ApolloClientOptions, ApolloLink } from '@apollo/client/core';
 import { APOLLO_OPTIONS, Apollo, ApolloModule } from 'apollo-angular';
 import { myUri } from './graphql.config';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,7 +26,7 @@ export const appConfig: ApplicationConfig = {
       },
       deps: [HttpLink],
     },
-    Apollo
+    Apollo, provideAnimationsAsync()
   
   ]
 };

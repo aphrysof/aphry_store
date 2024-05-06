@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {  Product } from '../aphry-store';
+import {  Product } from '../interfaces/aphry-store';
 import { RouterModule } from '@angular/router';
 
 @Component({

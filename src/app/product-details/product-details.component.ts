@@ -1,10 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Product } from '../aphry-store';
+import { Product } from '../interfaces/aphry-store';
 import { Apollo } from 'apollo-angular';
-import { AphrystoreService } from '../aphrystore.service';
+import { AphrystoreService } from '../services/aphrystore.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AphrystorePipePipe } from '../aphrystore-pipe.pipe';
+import { AphrystorePipePipe } from '../pipe/aphrystore-pipe.pipe';
 
 @Component({
   selector: 'app-product-details',
@@ -15,9 +15,12 @@ import { AphrystorePipePipe } from '../aphrystore-pipe.pipe';
 })
 export class ProductDetailsComponent  {
 [x: string]: any;
-  route: ActivatedRoute = inject(ActivatedRoute) 
+  route: ActivatedRoute = inject(ActivatedRoute)
   productDetails: Product | undefined
   productId: string = ''
+  selectedImage = ''
+  selected:boolean = false
+
 
   constructor(private apollo: Apollo, private  storeService: AphrystoreService){
     const productId = this.route.snapshot.params['id']
@@ -27,9 +30,12 @@ export class ProductDetailsComponent  {
       }
     }).valueChanges.subscribe(({data}) => {
       this.productDetails = data.product
-    })   
+      this.selectedImage = data.product.gallery[0]
+    })
   }
-  
 
+  changeImage (value: any) {
+    this.selectedImage = value
+  }
 
 }

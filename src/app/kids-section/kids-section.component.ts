@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ProductCardComponent } from '../product-card/product-card.component';
-import { Categories } from '../aphry-store';
+import { Categories } from '../interfaces/aphry-store';
 import { Apollo } from 'apollo-angular';
-import { GET_CATEGORIES } from '../graphql.operations';
-import { AphrystoreService } from '../aphrystore.service';
+import { AphrystoreService } from '../services/aphrystore.service';
 
 @Component({
   selector: 'app-kids-section',

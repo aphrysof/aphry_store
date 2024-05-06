@@ -1,7 +1,13 @@
 <section>
+    <aside>
+        <div class="image-gallery" *ngFor="let image of productDetails?.gallery; let i = index" (click)="changeImage(image)" >
+            <img [src]="image" alt="gallery" [ngClass]="productDetails?.gallery?.[i] === selectedImage ? 'selected': '' "/>
+        </div>
+
+    </aside>
     <div class="product-details">
         <div class="image-container">
-                
+             <img [src]="selectedImage" alt="product" />
         </div>
         <div class="details">
             <div class="product-names">
@@ -26,20 +32,20 @@
                                 @else {
                                     {{item.displayValue}}
                                 }
-                               
+
                             </span>
                         </button>
                     </div>
                   </div>
-                    
+
                 </div>
             </ng-template>
             <div class="price">
                 <h5>PRICE: </h5>
                 <p>{{productDetails?.prices?.[0]?.currency?.symbol}} {{productDetails?.prices?.[0]?.amount}}</p>
             </div>
-            <div class="add-button">
-                <button>Add to Cart</button>
+            <div>
+                <button [ngClass]="productDetails?.inStock ? 'add-button' : 'notallowed-button' ">Add to Cart</button>
             </div>
             <div class="description">
                 <p>{{productDetails?.description | removeHtml}}</p>
