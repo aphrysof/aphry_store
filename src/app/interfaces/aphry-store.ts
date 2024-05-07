@@ -22,8 +22,9 @@ export interface  AttributeSet {
   }
 
 export interface Product {
+  quantity: number,
   id: string
-  name:string 
+  name:string
   inStock: boolean
   gallery: [string]
   description: any

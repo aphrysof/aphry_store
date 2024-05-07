@@ -45,7 +45,7 @@
                 <p>{{productDetails?.prices?.[0]?.currency?.symbol}} {{productDetails?.prices?.[0]?.amount}}</p>
             </div>
             <div>
-                <button [ngClass]="productDetails?.inStock ? 'add-button' : 'notallowed-button' ">Add to Cart</button>
+                <button [ngClass]="productDetails?.inStock ? 'add-button' : 'notallowed-button' " (click)="addToCart(productDetails!)">Add to Cart</button>
             </div>
             <div class="description">
                 <p>{{productDetails?.description | removeHtml}}</p>

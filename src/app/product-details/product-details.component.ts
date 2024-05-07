@@ -1,10 +1,11 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {Component, OnInit, inject, Output, EventEmitter} from '@angular/core';
 import { Product } from '../interfaces/aphry-store';
 import { Apollo } from 'apollo-angular';
 import { AphrystoreService } from '../services/aphrystore.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AphrystorePipePipe } from '../pipe/aphrystore-pipe.pipe';
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-product-details',
@@ -22,7 +23,7 @@ export class ProductDetailsComponent  {
   selected:boolean = false
 
 
-  constructor(private apollo: Apollo, private  storeService: AphrystoreService){
+  constructor(private apollo: Apollo, private  storeService: AphrystoreService, private cartService: CartService){
     const productId = this.route.snapshot.params['id']
     this.apollo.watchQuery<any>({
       query: this.storeService.getProductById, variables: {
@@ -32,6 +33,11 @@ export class ProductDetailsComponent  {
       this.productDetails = data.product
       this.selectedImage = data.product.gallery[0]
     })
+  }
+
+  addToCart (product: Product) {
+    this.cartService.addToCart(product)
+    alert(`${product.name} has been added to the cart`)
   }
 
   changeImage (value: any) {

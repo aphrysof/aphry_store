@@ -6,11 +6,6 @@
         alt="product"
       />
       <div class="add-cart">
-        <ng-container *ngIf="product.inStock">
-          <button>
-            <img src="/assets/Common.svg" alt="cart" />
-          </button>
-        </ng-container>
         <p [ngClass]="product.inStock ? 'in-stock' : 'out-stock' ">OUT OF STOCK</p>
       </div>
       <div class="product-desc">

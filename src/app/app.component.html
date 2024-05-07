@@ -15,13 +15,8 @@
       <select>
         <option *ngFor="let currency of currencies" [value]="currency.symbol">{{ currency.symbol + "  " + currency.label }}</option>
       </select>
-      <div class="shopping-cart">
-        <div class="cart-button">
-          <img src="/assets/cart.svg" alt="shopping cart" aria-hidden="true" />
-        </div>
-        <div class="badge">
-          <span>2</span>
-        </div>
+      <div class="badge-icon">
+        <a href="/cart" routerLinkActive="active" ariaCurrentWhenActive="page"> <mat-icon [matBadge]="getTotalItems()" aria-hidden="false" aria-label="cart" fontIcon="shopping_cart" ></mat-icon></a>
       </div>
     </div>
   </header>

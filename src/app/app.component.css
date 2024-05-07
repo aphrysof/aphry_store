@@ -11,7 +11,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 40px 0;
-     
+
 }
 
 header > ul {
@@ -39,7 +39,7 @@ header > ul> li> a:hover, header> ul> li> a:active, header> ul> li> a:focus {
 
 .currency-section {
     display: flex;
-    
+
 }
 
 .currency-section > select {
@@ -55,7 +55,7 @@ header > ul> li> a:hover, header> ul> li> a:active, header> ul> li> a:focus {
   .cart--button {
     height: 30px;
   }
-  
+
   .badge {
     position: absolute;
     background: #5ece7b;
@@ -69,3 +69,16 @@ header > ul> li> a:hover, header> ul> li> a:active, header> ul> li> a:focus {
     justify-content: center;
     color: white;
   }
+
+.demo-section + .demo-section {
+  margin-top: 16px;
+}
+.badge-icon > a {
+  color: #1d1f22;
+}
+
+.badge-icon {
+  .mat-badge-content {
+    background-color: #5ece7b;
+  }
+}

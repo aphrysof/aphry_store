@@ -1,0 +1,37 @@
+<section>
+   <div class="inner-container">
+     <div class="item-details">
+       <h4>{{cartItem.name}}</h4>
+       <h2>{{cartItem.prices[0].currency.symbol}} {{cartItem.prices[0].amount}}</h2>
+       <div class="product-sizes"  *ngFor="let size of cartItem?.attributes">
+         <div>
+           <h5>{{size.name}}: </h5>
+           <div class="button">
+             <button class="sizes" *ngFor="let item of size.items" [style.background-color]="item.value">
+               @if (size.name === "Size") {
+                <span>{{item.value}}</span>
+               }@else if (size.name === "Color") {
+                <span></span>
+               }
+               @else {
+               <span>{{item.displayValue}}</span>
+               }
+             </button>
+           </div>
+         </div>
+
+       </div>
+     </div>
+     <div class="item-images">
+       <div class="toggle-quantity">
+        <button>+</button>
+         <p>{{cartItem.quantity}}</p>
+         <button>-</button>
+       </div>
+       <div class="image-slider">
+         <img [src]="cartItem.gallery[0]" [alt]="cartItem.name" />
+       </div>
+
+     </div>
+   </div>
+</section>
