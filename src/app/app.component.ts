@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   getTotalItems () {
-    return this.cartService.items.reduce((sum, {quantity}) => sum + quantity, 0)
+    return this.cartService.getItems().reduce((sum: any, {quantity}: any) => sum + quantity, 0)
   }
 
 }

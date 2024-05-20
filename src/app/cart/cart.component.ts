@@ -13,9 +13,15 @@ import {CartItemCardComponent} from "../cart-item-card/cart-item-card.component"
 })
 export class CartComponent implements OnInit{
   cartItems: Product[] = []
+
   constructor(private cart: CartService) {
   }
   ngOnInit() {
+   this.getCartProducts()
+
+  }
+
+  getCartProducts () {
     this.cartItems = this.cart.getItems()
   }
 
