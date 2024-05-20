@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, OnChanges, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Product} from "../interfaces/aphry-store";
 import {NgForOf} from "@angular/common";
 import {CartService} from "../services/cart.service";
