@@ -18,9 +18,10 @@ export class ProductDetailsComponent  {
 [x: string]: any;
   route: ActivatedRoute = inject(ActivatedRoute)
   productDetails: Product | undefined
-  productId: string = ''
   selectedImage = ''
-  selected:boolean = false
+  variants: string[] = []
+
+
 
 
   constructor(private apollo: Apollo, private  storeService: AphrystoreService, private cartService: CartService){
@@ -35,9 +36,18 @@ export class ProductDetailsComponent  {
     })
   }
 
+  addVariants (value: any) {
+    this.variants.push(value)
+    console.log("variants", this.variants)
+  }
+
   addToCart (product: Product) {
-    this.cartService.addToCart(product)
-    alert(`${product.name} has been added to the cart`)
+    if(!product.variants){
+      alert("You must select a variant before proceeding add to cart")
+    }else {
+      this.cartService.addToCart(product, this.variants)
+      alert(`${product.name} has been added to the cart`)
+    }
   }
 
   changeImage (value: any) {

@@ -17,9 +17,7 @@ export class CartItemCardComponent {
   @Output() quantityUpdated = new EventEmitter();
   constructor (private  cart: CartService) {
   }
-  // toggleQuantity (id: any, value: any) {
-  //    this.cart.toggleItemQuantity(id, value)
-  // }
+
 
   toggleQuantity (id: any, value: string) {
     const cartCopy = JSON.parse(localStorage.getItem("cartProduct")!);
@@ -32,16 +30,20 @@ export class CartItemCardComponent {
       if(newProduct){
         newProduct.quantity++;
         this.cartItem = newProduct;
-        this.quantityUpdated.emit({
-          id: this.cartItem.id,
-          quantity: this.cartItem.quantity
-        })
-        console.log('quantity increased', this.cartItem)
 
         cartCopy.slice(productIndex, 1, newProduct)
 
         localStorage.setItem("cartProduct", JSON.stringify(cartCopy));
 
+      }
+
+    }else if (value === "dec") {
+      if (newProduct.quantity > 1) {
+        newProduct.quantity--;
+        this.cartItem = newProduct
+        cartCopy.splice(productIndex, 1, newProduct);
+
+        localStorage.setItem("cartProduct", JSON.stringify(cartCopy));
       }
     }
 

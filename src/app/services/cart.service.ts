@@ -6,7 +6,7 @@ import {Product} from "../interfaces/aphry-store";
 })
 export class CartService {
   items: Product[] = []
-  addToCart (product: Product) {
+  addToCart (product: Product, variants: string[]) {
     const productCopy = [...this.items]
 
     let findExistingProduct = productCopy.find((item) => item?.id === product.id)
@@ -16,7 +16,8 @@ export class CartService {
     }else {
       findExistingProduct = {
         ...product,
-        quantity: 1
+        quantity: 1,
+        variants: []
       }
       productCopy.push(findExistingProduct)
     }
@@ -38,37 +39,6 @@ export class CartService {
     return this.items;
   }
 
-  toggleItemQuantity (id: any, value: any) {
-    const newCart = localStorage.getItem("cartProduct");
-    const cartItem = JSON.parse(newCart!);
-    //create a copy of the array
-    const cartCopy = cartItem.slice();
-
-    //first we need to findIndex of the product based on the id
-    const itemIndex = cartCopy.findIndex((product: any) => product.id === id);
-
-    //then create a variable and set the array against the objects index
-    let newItem = cartCopy[itemIndex];
-    if (value === "inc") {
-      if (newItem) {
-        //increase the objects quantity by one
-        newItem.quantity++;
-        //then remove the object and replace it with the newItem
-        cartCopy.splice(itemIndex, 1, newItem);
-        this.items = cartCopy
-
-        localStorage.setItem("cartProduct", JSON.stringify(cartCopy));
-      }
-    } else if (value === "dec") {
-      if (newItem.quantity > 1) {
-        newItem.quantity--;
-        cartCopy.splice(itemIndex, 1, newItem);
-        this.items = cartCopy;
-        localStorage.setItem("cartProduct", JSON.stringify(cartCopy));
-      }
-    }
-
-  }
   constructor() {
 
 

@@ -22,7 +22,7 @@
                   <div>
                     <h5>{{size.name}}</h5>
                     <div class="button">
-                        <button class="sizes" *ngFor="let item of size.items" [style.background-color]="item.value">
+                        <button class="sizes" *ngFor="let item of size.items" [style.background-color]="item.value" (click)="addVariants(item.value)">
                             <span>
                                 @if (size.name === "Size") {
                                     {{item.value}}

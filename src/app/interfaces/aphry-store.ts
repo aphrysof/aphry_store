@@ -41,6 +41,7 @@ export interface Product {
   }[]
   prices: [Price]
   brand: string
+  variants?: string[]
 }
 
 export interface Category {
