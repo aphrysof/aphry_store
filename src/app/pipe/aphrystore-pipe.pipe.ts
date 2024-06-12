@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AphrystorePipePipe implements PipeTransform {
 
   transform(value: string): any {
-    return value.replace(/<.*?>/g, ''); // replace tags
+    return value?.replace(/<.*?>/g, ''); // replace tags
 }
 
 }

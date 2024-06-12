@@ -17,7 +17,6 @@ export class CartService {
       findExistingProduct = {
         ...product,
         quantity: 1,
-        variants: []
       }
       productCopy.push(findExistingProduct)
     }

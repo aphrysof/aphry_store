@@ -1,5 +1,5 @@
 import {Component, OnInit, inject, Output, EventEmitter} from '@angular/core';
-import { Product } from '../interfaces/aphry-store';
+import {Attribute, AttributeSet, Product} from '../interfaces/aphry-store';
 import { Apollo } from 'apollo-angular';
 import { AphrystoreService } from '../services/aphrystore.service';
 import { ActivatedRoute } from '@angular/router';
@@ -20,6 +20,7 @@ export class ProductDetailsComponent  {
   productDetails: Product | undefined
   selectedImage = ''
   variants: string[] = []
+  selectedVariants: any = {};
 
 
 
@@ -36,18 +37,12 @@ export class ProductDetailsComponent  {
     })
   }
 
-  addVariants (value: any) {
-    this.variants.push(value)
-    console.log("variants", this.variants)
+  selectVariant (variantId: string, itemId: string) {
+      this.selectedVariants[variantId] = itemId
   }
 
   addToCart (product: Product) {
-    if(!product.variants){
-      alert("You must select a variant before proceeding add to cart")
-    }else {
-      this.cartService.addToCart(product, this.variants)
-      alert(`${product.name} has been added to the cart`)
-    }
+      console.log('item', product, this.selectedVariants)
   }
 
   changeImage (value: any) {

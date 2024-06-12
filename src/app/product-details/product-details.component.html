@@ -21,23 +21,26 @@
                 <div class="product-sizes"  *ngFor="let size of productDetails?.attributes">
                   <div>
                     <h5>{{size.name}}</h5>
-                    <div class="button">
-                        <button class="sizes" *ngFor="let item of size.items" [style.background-color]="item.value" (click)="addVariants(item.value)">
-                            <span>
-                                @if (size.name === "Size") {
-                                    {{item.value}}
-                                }@else if (size.name === "Color") {
-
-                                }
-                                @else {
-                                    {{item.displayValue}}
-                                }
-
-                            </span>
-                        </button>
+                    <div *ngIf="size.type === 'swatch'" class="button">
+                      <div *ngFor="let item of size.items"
+                           [style.background-color]="item.value"
+                           (click)="selectVariant(size.id, item.id)"
+                           [class.variant-selected]="selectedVariants[size.id] === item.id"
+                           class="sizes"
+                      >
+                        {{ size.type === 'swatch' ? null : item.displayValue }}
+                      </div>
                     </div>
                   </div>
-
+                  <div *ngIf="size.type === 'text'" class="button">
+                    <div *ngFor="let item of size.items"
+                         (click)="selectVariant(size.id, item.id)"
+                         [class.variant-selected]="selectedVariants[size.id] === item.id"
+                         class="sizes"
+                    >
+                      {{ item.displayValue }}
+                    </div>
+                  </div>
                 </div>
             </ng-template>
             <div class="price">
@@ -45,7 +48,8 @@
                 <p>{{productDetails?.prices?.[0]?.currency?.symbol}} {{productDetails?.prices?.[0]?.amount}}</p>
             </div>
             <div>
-                <button [ngClass]="productDetails?.inStock ? 'add-button' : 'notallowed-button' " (click)="addToCart(productDetails!)">Add to Cart</button>
+<!--                <button [ngClass]="productDetails?.inStock ? 'add-button' : 'notallowed-button' " (click)="addToCart(productDetails!)">Add to Cart</button>-->
+              <button class="add-button" [disabled]="!productDetails?.inStock" (click)="addToCart(productDetails!)">Add to Cart</button>
             </div>
             <div class="description">
                 <p>{{productDetails?.description | removeHtml}}</p>
